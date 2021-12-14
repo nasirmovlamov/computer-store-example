@@ -57,26 +57,16 @@
 </style>
 
 <div class="elements">
-    <#list users as user>
+    <#list categories as category>
         <div class="element">
             <div class="column">
                 <p>id</p>
-                <p>username</p>
-                <p>password</p>
-                <p>firstName</p>
-                <p>lastName</p>
-                <p>address</p>
-                <p>phone</p>
+                <p>name</p>
             </div>
             <div class="seperator"></div>
             <div class="column">
-                <p>${user.id}</p>
-                <p>${user.username}</p>
-                <p>${user.password}</p>
-                <p>${user.firstName}</p>
-                <p>${user.lastName}</p>
-                <p>${user.address}</p>
-                <p>${user.phone}</p>
+                <p>${category.id}</p>
+                <p>${category.name}</p>
             </div>
         </div>
     </#list>
