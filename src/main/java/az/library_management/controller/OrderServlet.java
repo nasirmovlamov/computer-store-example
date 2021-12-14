@@ -1,7 +1,7 @@
 package az.library_management.controller;
 
 import az.library_management.db.Database;
-import az.library_management.model.Category;
+import az.library_management.model.Order;
 import az.library_management.template_engine.TemplateEngine;
 
 import javax.servlet.http.HttpServlet;
@@ -10,18 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 
-public class CategoryServlet extends HttpServlet {
+public class OrderServlet extends HttpServlet {
     private final TemplateEngine templateEngine;
 
-    public CategoryServlet(TemplateEngine templateEngine) {
+    public OrderServlet(TemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         HashMap<String, Object> data = new HashMap<>();
-        List<Category> categories = new Database().findAllCategory();
-        data.put("categories", categories);
-        templateEngine.render("categories.ftl", data, resp);
+        List<Order> orders = new Database().findAllOrder();
+        data.put("orders", orders);
+        templateEngine.render("orders.ftl", data, resp);
     }
 }

@@ -1,35 +1,35 @@
 package az.library_management.model;
 
 public class Category {
-    private Integer categoryId;
-    private String bookCategory;
+    private Integer id;
+    private String name;
 
     public Category() {
     }
 
-    public Category(Integer categoryId, String bookCategory) {
-        this.categoryId = categoryId;
-        this.bookCategory = bookCategory;
+    public Category(Integer id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getBookCategory() {
-        return bookCategory;
+    public String getName() {
+        return name;
     }
 
-    public void setBookCategory(String bookCategory) {
-        this.bookCategory = bookCategory;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return String.format("Category{categoryId=%d, bookCategory='%s'}", categoryId, bookCategory);
+        return String.format("Category{id=%d, name='%s'}", id, name);
     }
 }

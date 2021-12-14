@@ -14,10 +14,7 @@ public class DynamicServerApp {
         TemplateEngine templateEngine = TemplateEngine.folder("templates");
 
         handler.addServlet(new ServletHolder(new HomePageServlet()), "/");
-        handler.addServlet(new ServletHolder(new UsersServlet(templateEngine)), "/users");
-        handler.addServlet(new ServletHolder(new BooksServlet(templateEngine)), "/books");
-        handler.addServlet(new ServletHolder(new StockServlet(templateEngine)), "/stocks");
-        handler.addServlet(new ServletHolder(new CategoryServlet(templateEngine)), "/categories");
+        handler.addServlet(new ServletHolder(new UserServlet(templateEngine)), "/users");
 
         server.setHandler(handler);
         server.start();
