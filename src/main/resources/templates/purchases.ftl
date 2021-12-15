@@ -57,24 +57,24 @@
 </style>
 
 <div class="elements">
-    <#list orders as order>
+    <#list purchases as purchase>
         <div class="element">
             <div class="column">
                 <p>id</p>
                 <p>userId</p>
-                <p>productId</p>
+                <p>accessorId</p>
                 <p>quantity</p>
                 <p>orderDate</p>
                 <p>orderTime</p>
             </div>
             <div class="seperator"></div>
             <div class="column">
-                <p>${order.id}</p>
-                <p>${order.userId}</p>
-                <p>${order.productId}</p>
-                <p>${order.quantity}</p>
-                <p>${order.orderDate}</p>
-                <p>${order.orderTime}</p>
+                <p>${purchase.id}</p>
+                <p>${purchase.userId}</p>
+                <p>${purchase.accessorId}</p>
+                <p>${purchase.quantity}</p>
+                <p>${purchase.orderDate}</p>
+                <p>${purchase.orderTime}</p>
             </div>
         </div>
     </#list>

@@ -1,24 +1,23 @@
 package az.library_management.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Order {
+public class Purchase {
     private Integer id;
     private Integer userId;
-    private Integer productId;
+    private Integer accessorId;
     private Integer quantity;
     private LocalDate orderDate;
     private LocalTime orderTime;
 
-    public Order() {
+    public Purchase() {
     }
 
-    public Order(Integer id, Integer userId, Integer productId, Integer quantity, LocalDate orderDate, LocalTime orderTime) {
+    public Purchase(Integer id, Integer userId, Integer accessorId, Integer quantity, LocalDate orderDate, LocalTime orderTime) {
         this.id = id;
         this.userId = userId;
-        this.productId = productId;
+        this.accessorId = accessorId;
         this.quantity = quantity;
         this.orderDate = orderDate;
         this.orderTime = orderTime;
@@ -40,12 +39,12 @@ public class Order {
         this.userId = userId;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getAccessorId() {
+        return accessorId;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setAccessorId(Integer accessorId) {
+        this.accessorId = accessorId;
     }
 
     public Integer getQuantity() {
@@ -77,7 +76,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", userId=" + userId +
-                ", productId=" + productId +
+                ", productId=" + accessorId +
                 ", quantity=" + quantity +
                 ", orderDate=" + orderDate +
                 ", orderTime=" + orderTime +

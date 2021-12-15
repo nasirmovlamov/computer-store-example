@@ -1,8 +1,8 @@
 package az.library_management.db;
 
+import az.library_management.model.Accessor;
 import az.library_management.model.Category;
-import az.library_management.model.Order;
-import az.library_management.model.Product;
+import az.library_management.model.Purchase;
 import az.library_management.model.User;
 
 import java.math.BigDecimal;
@@ -11,14 +11,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
     public List<User> findAllUser() {
-        final String SQL_SELECT = "SELECT * FROM ecommerce.users;";
+        final String SQL_SELECT = "SELECT * FROM computer_store.users;";
         try (Connection conn = new DbConnection().getDbConnection();
              PreparedStatement sql = conn.prepareStatement(SQL_SELECT)) {
             ResultSet resultSet = sql.executeQuery();
@@ -43,24 +42,25 @@ public class Database {
         return new ArrayList<>();
     }
 
-    public List<Product> findAllProduct() {
-        final String SQL_SELECT = "SELECT * FROM ecommerce.products;";
+    public List<Accessor> findAllAccessor() {
+        final String SQL_SELECT = "SELECT * FROM computer_store.accessors;";
         try (Connection conn = new DbConnection().getDbConnection();
              PreparedStatement sql = conn.prepareStatement(SQL_SELECT)) {
             ResultSet resultSet = sql.executeQuery();
-            List<Product> products = new ArrayList<>();
+            List<Accessor> accessors = new ArrayList<>();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
+                int categoryId = resultSet.getInt("category_id");
+                String modelNumber = resultSet.getString("model_number");
+                String modelName = resultSet.getString("model_name");
                 String description = resultSet.getString("description");
-                BigDecimal price = BigDecimal.valueOf(resultSet.getDouble("price"));
-                BigDecimal discount = BigDecimal.valueOf(resultSet.getDouble("discount"));
-                int categoryId = resultSet.getInt("categoryId");
-                products.add(
-                        new Product(id, name, description, price, discount, categoryId)
+                BigDecimal price = BigDecimal.valueOf(resultSet.getFloat("price"));
+                BigDecimal discount = BigDecimal.valueOf(resultSet.getFloat("discount"));
+                accessors.add(
+                        new Accessor(id, categoryId, modelNumber, modelName, description, price, discount)
                 );
             }
-            return products;
+            return accessors;
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             System.out.println("Error while interacting with db");
@@ -69,7 +69,7 @@ public class Database {
     }
 
     public List<Category> findAllCategory() {
-        final String SQL_SELECT = "SELECT * FROM ecommerce.categories;";
+        final String SQL_SELECT = "SELECT * FROM computer_store.categories;";
         try (Connection conn = new DbConnection().getDbConnection();
              PreparedStatement sql = conn.prepareStatement(SQL_SELECT)) {
             ResultSet resultSet = sql.executeQuery();
@@ -89,24 +89,24 @@ public class Database {
         return new ArrayList<>();
     }
 
-    public List<Order> findAllOrder() {
-        final String SQL_SELECT = "SELECT * FROM ecommerce.orders;";
+    public List<Purchase> findAllPurchase() {
+        final String SQL_SELECT = "SELECT * FROM computer_store.purchases;";
         try (Connection conn = new DbConnection().getDbConnection();
              PreparedStatement sql = conn.prepareStatement(SQL_SELECT)) {
             ResultSet resultSet = sql.executeQuery();
-            List<Order> orders = new ArrayList<>();
+            List<Purchase> purchases = new ArrayList<>();
             while (resultSet.next()) {
                 Integer id = resultSet.getInt("id");
-                Integer userId = resultSet.getInt("userId");
-                Integer productId = resultSet.getInt("productId");
+                Integer userId = resultSet.getInt("user_id");
+                Integer accessorId = resultSet.getInt("accessor_id");
                 Integer quantity = resultSet.getInt("quantity");
                 LocalDate orderDate = resultSet.getDate("order_date").toLocalDate();
                 LocalTime orderTime = resultSet.getTime("order_time").toLocalTime();
-                orders.add(
-                        new Order(id, userId, productId, quantity, orderDate, orderTime)
+                purchases.add(
+                        new Purchase(id, userId, accessorId, quantity, orderDate, orderTime)
                 );
             }
-            return orders;
+            return purchases;
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             System.out.println("Error while interacting with db");
